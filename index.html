@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        header {
+            background-color: #2d3e50;
+            color: black;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+        /* Hero Section */
+        .hero {
+            background: url('file:///E:/box/hero-image.jpg') no-repeat center center/cover;
+            height: 400px;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        /* Container */
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        select, button, input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #2d3e50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4f6479;
+        }
+        .places {
+            margin-top: 20px;
+        }
+        .place {
+            background-color: #e3f2fd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+        .place img {
+            width: 150px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .place h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .place p {
+            margin: 5px 0;
+        }
+        .continent-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        /* Featured Destinations */
+        .featured-destinations {
+            margin-top: 30px;
+            display: flex;
+            overflow-x: scroll;
+            padding-bottom: 10px;
+        }
+        .destination {
+            width: 250px;
+            height: 150px;
+            margin-right: 15px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .destination img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .destination p {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        /* FAQ Section */
+        .faq {
+            margin-top: 50px;
+        }
+        .faq h2 {
+            text-align: center;
+        }
+        .faq-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .faq-item h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+        .faq-item p {
+            margin-top: 5px;
+        }
+        /* Footer */
+        footer {
+            background-color: #2d3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Booking Form Styles */
+        .booking-form {
+            margin-top: 40px;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .booking-form input, .booking-form select {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .booking-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#continentSelect">Explore</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Welcome to the Travel Guide</h2>
+        <p>Your adventure starts here. Explore top destinations across the globe!</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div>
+            <label for="continentSelect">Select a continent:</label>
+            <select id="continentSelect">
+                <option value="">--Choose a continent--</option>
+                <option value="Africa">Africa</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="NorthAmerica">North America</option>
+                <option value="SouthAmerica">South America</option>
+                <option value="Oceania">Oceania</option>
+            </select>
+            <button onclick="showTopPlaces()">Show Top 5 Places</button>
+        </div>
+
+        <!-- Featured Destinations -->
+        <div class="featured-destinations">
+            <div class="destination">
+                <a href="file:///E:/box/africa.jpg" target="_blank">
+                    <img src="file:///E:/box/africa.jpg" alt="Africa">
+                </a>
+                <p>Africa</p>
+            </div>
+            <div class="destination">
+                <a href="file:///E:/box/asia.jpg" target="_blank">
+                    <img src="file:///E:/box/asia.jpg" alt="Asia">
+                </a>
+                <p>Asia</p>
+            </div>
+            <div class="destination">
+                <a href="file:///E:/box/europe.jpg" target="_blank">
+                    <img src="file:///E:/box/europe.jpg" alt="Europe">
+                </a>
+                <p>Europe</p>
+            </div>
+            <div class="destination">
+                <a href="file:///E:/box/north%20america.jpg" target="_blank">
+                    <img src="file:///E:/box/north%20america.jpg" alt="North America">
+                </a>
+                <p>North America</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq" id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>How do I explore a continent?</h3>
+                <p>Select a continent from the dropdown menu and click "Show Top 5 Places" to see the best destinations.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I explore multiple continents at once?</h3>
+                <p>Currently, you can only explore one continent at a time. We recommend starting with a continent of your choice.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I book these destinations?</h3>
+                <p>Click on the destination names for more detailed travel information. We will soon provide direct booking links!</p>
+            </div>
+        </div>
+
+        <!-- Places Section (Dynamic) -->
+        <div id="continentImageDiv"></div>
+        <div id="places" class="places"></div>
+
+        <!-- Booking Form -->
+        <div class="booking-form" id="contact">
+            <h2>Book Your Adventure</h2>
+            <form action="#" method="POST">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="destination">Select Destination:</label>
+                <select id="destination" name="destination">
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="NorthAmerica">North America</option>
+                    <option value="SouthAmerica">South America</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+
+                <label for="travelDate">Travel Date:</label>
+                <input type="date" id="travelDate" name="travelDate" required>
+
+                <button type="submit">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Travel Guide | <a href="https://www.instagram.com">Instagram</a> | <a href="https://www.twitter.com">Twitter</a> | <a href="https://www.facebook.com">Facebook</a></p>
+    </footer>
+
+    <script>
+        function showTopPlaces() {
+            const continent = document.getElementById("continentSelect").value;
+            const placesDiv = document.getElementById("places");
+            const continentImageDiv = document.getElementById("continentImageDiv");
+            placesDiv.innerHTML = ""; // Clear any previous results
+            continentImageDiv.innerHTML = ""; // Clear any previous continent image
+
+            if (!continent) {
+                alert("Please select a continent");
+                return;
+            }
+
+            const continentImages = {
+                "Africa": "file:///E:/box/africa.jpg",
+                "Asia": "file:///E:/box/asia.jpg",
+                "Europe": "file:///E:/box/europe.jpg",
+                "NorthAmerica": "file:///E:/box/north%20america.jpg",
+                "SouthAmerica": "file:///E:/box/south%20 america.jpg",
+                "Oceania": "file:///E:/box/ocenia.jpg"
+            };
+
+            const placesData = {
+                "Africa": [
+                    { name: "Cape Town", description: "A beautiful coastal city in South Africa.", image: "file:///E:/box/aa.jpg" },
+                    { name: "Marrakech", description: "A historic city in Morocco with vibrant markets.", image: "file:///E:/box/bb.jpg" },
+                    { name: "Serengeti National Park", description: "Famous for its annual migration of wildebeest.", image: "file:///E:/box/cc.jpg" },
+                    { name: "Victoria Falls", description: "One of the largest waterfalls in the world.", image: "file:///E:/box/dd.jpg" },
+                    { name: "Pyramids of Giza", description: "Ancient wonders of the world located in Egypt.", image: "file:///E:/box/ee.jpg" }
+                ],
+                "Asia": [
+                    { name: "Great Wall of China", description: "A vast fortification stretching over 13,000 miles.", image: "file:///E:/box/ggg.jpg" },
+                    { name: "Tokyo", description: "A bustling city with cutting-edge technology and rich culture.", image: "file:///E:/box/ff.jpg" },
+                    { name: "Bali", description: "An Indonesian island famous for its beaches and culture.", image: "file:///E:/box/hh.jpg" },
+                    { name: "Angkor Wat", description: "A magnificent temple complex in Cambodia.", image: "file:///E:/box/ii.jpg" },
+                    { name: "Mount Everest", description: "The highest mountain in the world, located in Nepal.", image: "file:///E:/box/jj.jpg" }
+                ]
+            };
+
+            // Display continent image
+            const continentImage = continentImages[continent];
+            continentImageDiv.innerHTML = `<img src="${continentImage}" alt="${continent}" class="continent-img">`;
+
+            // Display places for the selected continent
+            const selectedPlaces = placesData[continent];
+            selectedPlaces.forEach(place => {
+                const placeDiv = document.createElement("div");
+                placeDiv.classList.add("place");
+
+                placeDiv.innerHTML = `
+                    <a href="${place.image}" target="_blank">
+                        <img src="${place.image}" alt="${place.name}">
+                    </a>
+                    <div>
+                        <h3>${place.name}</h3>
+                        <p>${place.description}</p>
+                    </div>
+                `;
+                placesDiv.appendChild(placeDiv);
+            });
+        }
+    </script>
+
+</body>
+</html>
